@@ -1,5 +1,5 @@
 class Node extends Phaser.Sprite
-    constructor: (obj) ->
-        super(game, 0, 0, 'circle')
+    constructor: (x = 0, y = 0, type = 'circle')->
+        super(game, x, y, type)
         
 module.exports = Node

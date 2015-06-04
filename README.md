@@ -6,7 +6,7 @@
 
 * [Cloud9](https://c9.io/)
 * [Phaser](https://phaser.io/)
-* [Javascript data structures collection](https://github.com/chenglou/data-structures)
+* [chenglou/data-structures](https://github.com/chenglou/data-structures)
 
 ---
 
