@@ -6,8 +6,11 @@ class Node extends Phaser.Sprite
     
     # Public methods
     constructor: (x = 0, y = 0, type = 'circle')->
-        super(game, x, y, type)
+        super game, x, y, type
         @anchor.set 0.5
+        @inputEnabled = true
+        @events.onInputUp.add ->
+            console.log 'clicked'
     createChildren: ->
         if @_upper is null
             @_upper = new Node
