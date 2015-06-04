@@ -19,7 +19,7 @@ state.create = ->
             n2.createChildren()
             for n3 in n2.getChildren()
                 field.add n3
-    field.arrangeNodes root
+    field.arrangeNodes [root], 3
     game.add.existing field
 
 module.exports = state
