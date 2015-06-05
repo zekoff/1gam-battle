@@ -9,16 +9,26 @@ class Node extends Phaser.Sprite
         super game, x, y, type
         @anchor.set 0.5
         @inputEnabled = true
-        @events.onInputUp.add ->
-            console.log 'clicked'
+        @events.onInputUp.add =>
+            @tint = 0x00FF00
+            print 'creating children'
+            @createChildren 3
+            # add all reachable nodes to field
+            for n in @getChildren 3
+                field.add n
+            # remove everything not reachable from @
+            field.arrangeNodes [@]
     createChildren: (depth = 1) ->
         depth--
+        print depth
         if @_upper is null
+            print 'new node'
             @_upper = new Node
-            @_upper.createChildren(depth) if depth > 0
         if @_lower is null
+            print 'new node'
             @_lower = new Node
-            @_lower.createChildren(depth) if depth > 0
+        @_upper.createChildren(depth) if depth > 0
+        @_lower.createChildren(depth) if depth > 0
     getChildren: (depth = 1, children = []) ->
         depth--
         children.push @_upper, @_lower

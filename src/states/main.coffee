@@ -7,7 +7,7 @@ state = {}
 
 state.create = ->
     graph = new Graph
-    field = new Field
+    global.field = new Field
     root = new Node
     field.add root
     root.createChildren 3
