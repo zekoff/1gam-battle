@@ -10,16 +10,10 @@ state.create = ->
     field = new Field
     root = new Node
     field.add root
-    root.createChildren()
-    for n1 in root.getChildren()
-        field.add n1
-        n1.createChildren()
-        for n2 in n1.getChildren()
-            field.add n2
-            n2.createChildren()
-            for n3 in n2.getChildren()
-                field.add n3
-    field.arrangeNodes [root], 3
+    root.createChildren 3
+    field.arrangeNodes [root]
+    for n in root.getChildren(3)
+        field.add n
     game.add.existing field
 
 module.exports = state

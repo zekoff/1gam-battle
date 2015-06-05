@@ -1,7 +1,7 @@
 class Field extends Phaser.Group
     constructor: ->
         super game
-    arrangeNodes: (tier, depth) ->
+    arrangeNodes: (tier, depth = 3) ->
         yOffset = 1
         for child in tier
             child.x = (3 - depth) * 150
