@@ -1,4 +1,5 @@
 GraphUtils = require '../util/graph_utils'
+NodeInput = require '../util/node_input'
 
 class Node extends Phaser.Sprite
     
@@ -15,23 +16,12 @@ class Node extends Phaser.Sprite
         @edge = game.add.sprite 0, 0, 'line'
         @edge.scale.set 4
         @edge.tint = 0x00FF00
-        @events.onInputUp.add =>
-            @tint = 0x00FF00
-            game.world.setAll '_onscreen', false
-            @createChildren 3
-            # add all reachable nodes to field
-            @_onscreen = true
-            for n in @getChildren 3
-                game.world.add n
-                game.world.add n.edge
-                n._onscreen = true
-            # remove everything not reachable from @
-            # this iterates over edges, too. not desirable
-            game.world.forEach (child) ->
-                if not child._onscreen and child.key is 'circle'
-                    child.edge?.kill()
-                    child.kill()
-            GraphUtils.arrangeNodes [@]
+        @events.onInputUp.add NodeInput.advanceNodes.bind @
+
+    addChild: (child) ->
+        if @_children is null
+            @_children = []
+        @_children.push child
 
     createChildren: (depth = 1) ->
         if @_children is null
