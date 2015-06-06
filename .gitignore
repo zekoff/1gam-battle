@@ -1,3 +1,4 @@
 bin/
 node_modules/
 bundle.js
+open_issues.md
