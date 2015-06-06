@@ -5,6 +5,7 @@ state.preload = ->
     
 state.create = ->
     game.load.image 'circle', 'images/circle.png'
+    game.load.image 'line', 'images/line.png'
     game.load.start()
     
 state.update = ->
