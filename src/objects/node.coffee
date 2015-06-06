@@ -3,8 +3,7 @@ GraphUtils = require '../util/graph_utils'
 class Node extends Phaser.Sprite
     
     # Fields
-    _upper: null
-    _lower: null
+    _children: null
     
     # Public methods
     constructor: (x = 0, y = 0, type = 'circle')->
@@ -27,19 +26,17 @@ class Node extends Phaser.Sprite
 
     createChildren: (depth = 1) ->
         depth--
-        if @_upper is null
-            @_upper = new Node
-        if @_lower is null
-            @_lower = new Node
-        @_upper.createChildren(depth) if depth > 0
-        @_lower.createChildren(depth) if depth > 0
+        if @_children is null
+            @_children = []
+            @_children.push(new Node) for [0..1]
+        for child in @_children
+            child.createChildren(depth) if depth > 0
 
     getChildren: (depth = 1, children = []) ->
         depth--
-        children.push @_upper, @_lower
+        children.push @_children...
         if depth > 0
-            @_upper.getChildren(depth, children)
-            @_lower.getChildren(depth, children)
+            child.getChildren(depth, children) for child in @_children
         return children
 
 module.exports = Node
