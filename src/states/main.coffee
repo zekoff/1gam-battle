@@ -1,19 +1,14 @@
-Graph = require('data-structures').Graph
-Field = require '../objects/field'
 Node = require '../objects/node'
 GraphUtils = require '../util/graph_utils'
 
 state = {}
 
 state.create = ->
-    graph = new Graph
-    global.field = new Field
     root = new Node
-    field.add root
+    game.world.add root
     root.createChildren 3
-    field.arrangeNodes [root]
+    GraphUtils.arrangeNodes [root]
     for n in root.getChildren(3)
-        field.add n
-    game.add.existing field
+        game.world.add n
 
 module.exports = state

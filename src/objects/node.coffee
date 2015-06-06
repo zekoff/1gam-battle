@@ -1,4 +1,4 @@
-Utils = require '../util/graph_utils'
+GraphUtils = require '../util/graph_utils'
 
 class Node extends Phaser.Sprite
     
@@ -13,17 +13,17 @@ class Node extends Phaser.Sprite
         @inputEnabled = true
         @events.onInputUp.add =>
             @tint = 0x00FF00
-            field.setAll 'onscreen', false
+            game.world.setAll 'onscreen', false
             @createChildren 3
             # add all reachable nodes to field
             @onscreen = true
             for n in @getChildren 3
-                field.add n
+                game.world.add n
                 n.onscreen = true
             # remove everything not reachable from @
-            field.forEach (child) ->
+            game.world.forEach (child) ->
                 child.kill() if not child.onscreen
-            field.arrangeNodes [@]
+            GraphUtils.arrangeNodes [@]
 
     createChildren: (depth = 1) ->
         depth--
