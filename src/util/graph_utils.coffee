@@ -4,8 +4,14 @@ angle = Phaser.Math.angleBetween
 TWEEN_MS = 1000
 
 utils.shiftNodes = (oldRoot, newRoot, depth = 3) ->
-    utils.arrangeNodes [newRoot], depth, 'newX', 'newY', 'newWidth', 'newRotation'
+    utils.arrangeNodes [newRoot], depth, true
     # TODO: clean up old nodes
+    newNodes = newRoot.getChildren depth
+    oldNodes = oldRoot.getChildren depth
+    for node in oldNodes
+        if node not in newNodes
+            node.edge?.kill()
+            node.kill()
     utils.shiftChildren newRoot, depth
     
 utils.shiftChildren = (node, depth = 3) ->
@@ -23,7 +29,12 @@ utils.shiftChildren = (node, depth = 3) ->
         if depth > 0
             utils.shiftChildren child, depth - 1
 
-utils.arrangeNodes = (tier, depth = 3, xProperty = 'x', yProperty = 'y', widthProperty = 'width', rotationProperty = 'rotation') ->
+utils.arrangeNodes = (tier, depth = 3, prepass = false) ->
+    xProperty = 'x'; yProperty = 'y'
+    widthProperty = 'width'; rotationProperty = 'rotation'
+    if prepass
+        xProperty = 'newX'; yProperty = 'newY'
+        widthProperty = 'newWidth'; rotationProperty = 'newRotation'
     yOffset = 1
     for node in tier
         node[xProperty] = (3 - depth) * 150
@@ -35,7 +46,7 @@ utils.arrangeNodes = (tier, depth = 3, xProperty = 'x', yProperty = 'y', widthPr
         nextTier = []
         for child in tier
             nextTier.push child.getChildren()...
-        utils.arrangeNodes nextTier, depth - 1, xProperty, yProperty
+        utils.arrangeNodes nextTier, depth - 1, prepass
     for node in tier
         for child in node.getChildren()
             child.edge[xProperty] = node[xProperty]

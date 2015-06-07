@@ -4,7 +4,7 @@ GraphUtils = require '../util/graph_utils'
 state = {}
 
 state.create = ->
-    global.root = new Node
+    window.root = new Node
     game.world.add root
     root.createChildren 3
     GraphUtils.arrangeNodes [root]
