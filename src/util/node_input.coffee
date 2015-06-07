@@ -19,6 +19,7 @@ node_input.advanceNodes = ->
         if not child._onscreen and child.key is 'circle'
             child.edge?.kill()
             child.kill()
-    GraphUtils.arrangeNodes [@]
+    GraphUtils.shiftNodes root, @
+    root = @
 
 module.exports = node_input
