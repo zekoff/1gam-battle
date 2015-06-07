@@ -8,7 +8,7 @@ state.create = ->
     game.world.add root
     root.createChildren 3
     GraphUtils.arrangeNodes [root]
-    for n in root.getChildren(3)
+    for n in root.getChildren 3
         game.world.add n
 
 module.exports = state
