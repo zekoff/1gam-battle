@@ -11,15 +11,22 @@ state.create = ->
     for n in root.getChildren 4
         game.world.add n
     enemyTimer = game.time.create()
-    playerHp = 100
+    window.playerHp = 100
     timerFunction = ->
         hpLost = 10
         hpLost /= 2 if window.blockedLast
         window.blockedLast = false
-        playerHp -= hpLost
-        print "Player HP: #{playerHp}"
+        window.playerHp -= hpLost
+        print "Player HP: #{window.playerHp}"
         enemyTimer.add 2000, timerFunction
     enemyTimer.add 2000, timerFunction
     enemyTimer.start()
+    window.enemyHp = 100
+
+state.update = ->
+    if window.enemyHp <= 0
+        print "*** YOU WIN!!!! ***"
+    if window.playerHp <= 0
+        print "--- YOU LOSE... ---
         
 module.exports = state
