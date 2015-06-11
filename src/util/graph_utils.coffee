@@ -1,9 +1,9 @@
 utils = {}
 dist = Phaser.Math.distance
 angle = Phaser.Math.angleBetween
-TWEEN_MS = 1000
+TWEEN_MS = 500
 
-utils.shiftNodes = (oldRoot, newRoot, depth = 3) ->
+utils.shiftNodes = (oldRoot, newRoot, depth = 4) ->
     utils.arrangeNodes [newRoot], depth, true
     # TODO: clean up old nodes
     newNodes = newRoot.getChildren depth
@@ -14,7 +14,7 @@ utils.shiftNodes = (oldRoot, newRoot, depth = 3) ->
             node.kill()
     utils.shiftChildren newRoot, depth
     
-utils.shiftChildren = (node, depth = 3) ->
+utils.shiftChildren = (node, depth = 4) ->
     for child in node.getChildren()
         game.tweens.create(child).to({
             x: child.newX
@@ -29,7 +29,7 @@ utils.shiftChildren = (node, depth = 3) ->
         if depth > 0
             utils.shiftChildren child, depth - 1
 
-utils.arrangeNodes = (tier, depth = 3, prepass = false) ->
+utils.arrangeNodes = (tier, depth = 4, prepass = false) ->
     xProperty = 'x'; yProperty = 'y'
     widthProperty = 'width'; rotationProperty = 'rotation'
     if prepass
@@ -37,7 +37,7 @@ utils.arrangeNodes = (tier, depth = 3, prepass = false) ->
         widthProperty = 'newWidth'; rotationProperty = 'newRotation'
     yOffset = 1
     for node in tier
-        node[xProperty] = (3 - depth) * 150
+        node[xProperty] = (4 - depth) * 150
         node[yProperty] = yOffset++ * 600 / tier.length - 600 / tier.length / 2
         if depth < 0 # bizarre... need to think on this
             node[xProperty] = 900

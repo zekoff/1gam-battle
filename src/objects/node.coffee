@@ -7,6 +7,7 @@ class Node extends Phaser.Sprite
     _children: null
     _onscreen: false
     edge: null # edge back to parent; set by parent
+    ability: null
     
     # Public methods
     constructor: (x = 0, y = 0, type = 'circle')->
@@ -17,6 +18,16 @@ class Node extends Phaser.Sprite
         @edge.scale.set 4
         @edge.tint = 0x00FF00
         @events.onInputUp.add NodeInput.advanceNodes.bind @
+        switch game.rnd.between(0,1)
+            when 0
+                @ability = ->
+                    print 'did 1 damage'
+                @tint = 0xFF0000
+            when 1
+                @ability = ->
+                    window.blockedLast = true
+                    print '50% block'
+                @tint = 0x0000FF
 
     addChild: (child) ->
         if @_children is null

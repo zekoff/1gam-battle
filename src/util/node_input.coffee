@@ -4,12 +4,13 @@ node_input = {}
 
 # Must be bound to a node before using.
 node_input.advanceNodes = ->
+    @ability()
     @tint = 0x00FF00
     game.world.setAll '_onscreen', false
-    @createChildren 3
+    @createChildren 4
     # add all reachable nodes to field
     @_onscreen = true
-    for n in @getChildren 3
+    for n in @getChildren 4
         game.world.add n
         game.world.add n.edge
         n._onscreen = true
