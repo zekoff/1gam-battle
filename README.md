@@ -4,15 +4,15 @@
 
 ## Tools used
 
-* [Phaser](https://phaser.io/)
-* [Cloud9](https://c9.io/)
-* [GIMP](http://www.gimp.org/)
+- [Phaser](https://phaser.io/)
+- [Cloud9](https://c9.io/)
+- [GIMP](http://www.gimp.org/)
 
 ---
 
 ## Setting up development environment
 
-```sh
+```bash
 npm install -g coffee-script browserfiy watchify
 ```
 

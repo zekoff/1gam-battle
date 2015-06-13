@@ -4,7 +4,8 @@ node_input = {}
 
 # Must be bound to a node before using.
 node_input.advanceNodes = ->
-    @ability()
+    @popup?.destroy()
+    @ability.action()
     @tint = 0x00FF00
     game.world.setAll '_onscreen', false
     @createChildren 4
