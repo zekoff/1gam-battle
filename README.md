@@ -4,17 +4,16 @@
 
 ## Tools used
 
-* [Cloud9](https://c9.io/)
 * [Phaser](https://phaser.io/)
-* [chenglou/data-structures](https://github.com/chenglou/data-structures)
+* [Cloud9](https://c9.io/)
+* [GIMP](http://www.gimp.org/)
 
 ---
 
 ## Setting up development environment
 
-```bash
+```sh
 npm install -g coffee-script browserfiy watchify
-npm install data-structures
 ```
 
 `./dev.sh` is the file watcher for compilation; start it up in a separate
