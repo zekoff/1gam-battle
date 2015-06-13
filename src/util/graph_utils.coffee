@@ -2,8 +2,13 @@ utils = {}
 dist = Phaser.Math.distance
 angle = Phaser.Math.angleBetween
 TWEEN_MS = 500
+FIELD_HEIGHT = 600
+FIELD_WIDTH = 800
+TIERS_ONSCREEN = 4
+TIER_SPACING = FIELD_WIDTH / TIERS_ONSCREEN
+LEFT_EDGE_PADDING = 30
 
-utils.shiftNodes = (oldRoot, newRoot, depth = 4) ->
+utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
     utils.arrangeNodes [newRoot], depth, true
     # TODO: clean up old nodes
     newNodes = newRoot.getChildren depth
@@ -18,7 +23,7 @@ utils.shiftNodes = (oldRoot, newRoot, depth = 4) ->
 Starting with the given node, create a tween animation for each node which moves
 it to its new location based on its newX/newY.
 ###
-utils.shiftChildren = (node, depth = 4) ->
+utils.shiftChildren = (node, depth = TIERS_ONSCREEN + 1) ->
     for child in node.getChildren()
         game.tweens.create(child).to({
             x: child.newX
@@ -30,15 +35,19 @@ utils.shiftChildren = (node, depth = 4) ->
             x: node.newX
             y: node.newY
         }, TWEEN_MS).start()
-        if depth > 0
+        if depth > 1
             utils.shiftChildren child, depth - 1
 
 ###
 Starting with the given tier, set the X/Y properties of nodes to the specified
 depth so that they are arranged in a tree. If the prepass parameter is true,
-set the newX/newY propoerties instead of directly setting the X/Y propoerties.
+set the newX/newY propoerties instead of directly setting the X/Y properties.
+
+The `depth` parameter specifies how many tiers AFTER the parameter `tier` will
+also be arranged. This should include the tier that hangs off the end of the
+field.
 ###
-utils.arrangeNodes = (tier, depth = 4, prepass = false) ->
+utils.arrangeNodes = (tier, depth = TIERS_ONSCREEN + 1, prepass = false) ->
     xProperty = 'x'; yProperty = 'y'
     widthProperty = 'width'; rotationProperty = 'rotation'
     if prepass
@@ -46,12 +55,12 @@ utils.arrangeNodes = (tier, depth = 4, prepass = false) ->
         widthProperty = 'newWidth'; rotationProperty = 'newRotation'
     yOffset = 1
     for node in tier
-        node[xProperty] =  30 + (4 - depth) * 200
-        node[yProperty] = yOffset++ * 600 / tier.length - 600 / tier.length / 2
-        if depth is 0
-            node[xProperty] = 900
+        node[xProperty] =  LEFT_EDGE_PADDING + (TIERS_ONSCREEN + 1 - depth) * TIER_SPACING
+        node[yProperty] = yOffset++ * FIELD_HEIGHT / tier.length - FIELD_HEIGHT / tier.length / 2
+        if depth is 1
+            node[xProperty] = TIER_SPACING * (TIERS_ONSCREEN) + LEFT_EDGE_PADDING
             node[yProperty] = node[yProperty]
-    if depth > 0
+    if depth > 1
         nextTier = []
         for child in tier
             nextTier.push child.getChildren()...

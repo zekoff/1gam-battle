@@ -7,7 +7,7 @@ class Node extends Phaser.Sprite
     # Fields
     _children: null
     _onscreen: false
-    edge: null # edge back to parent; set by parent
+    edge: null # edge back to parent
     ability: null
     popup: null
     
@@ -49,7 +49,8 @@ class Node extends Phaser.Sprite
                 @tint = 0x00FF00
         @events.onInputOver.add =>
             @popup = new Popup
-            @popup.y = 400
+            @popup.x = 4
+            @popup.y = 496
             @popup.setHeading @ability.name
             @popup.setText @ability.text
         @events.onInputOut.add =>

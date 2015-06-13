@@ -7,7 +7,7 @@ class Popup extends Phaser.Group
         super game
         background = @create 0, 0, 'line'
         background.width = 300
-        background.height = 200
+        background.height = 100
         background.alpha = 0.5
         @_heading = game.make.text 10, 10, "Ability Name", {
             fill: 'black'
