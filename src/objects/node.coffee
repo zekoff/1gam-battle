@@ -14,7 +14,7 @@ class Node extends Phaser.Sprite
         super game, x, y, type
         @anchor.set 0.5
         @inputEnabled = true
-        @edge = game.add.sprite 0, 0, 'line'
+        @edge = game.add.sprite x, y, 'line'
         @edge.scale.set 4
         @edge.tint = 0x00FF00
         @events.onInputUp.add NodeInput.advanceNodes.bind @
@@ -45,7 +45,7 @@ class Node extends Phaser.Sprite
     createChildren: (depth = 1) ->
         if @_children is null
             @_children = []
-            @_children.push(new Node) for [0..game.rnd.between(0,2)]
+            @_children.push(new Node @x, @y) for [0..game.rnd.between(0,2)]
         for child in @_children
             child.createChildren(depth - 1) if depth > 1
 

@@ -14,6 +14,10 @@ utils.shiftNodes = (oldRoot, newRoot, depth = 4) ->
             node.kill()
     utils.shiftChildren newRoot, depth
     
+###
+Starting with the given node, create a tween animation for each node which moves
+it to its new location based on its newX/newY.
+###
 utils.shiftChildren = (node, depth = 4) ->
     for child in node.getChildren()
         game.tweens.create(child).to({
@@ -29,6 +33,11 @@ utils.shiftChildren = (node, depth = 4) ->
         if depth > 0
             utils.shiftChildren child, depth - 1
 
+###
+Starting with the given tier, set the X/Y properties of nodes to the specified
+depth so that they are arranged in a tree. If the prepass parameter is true,
+set the newX/newY propoerties instead of directly setting the X/Y propoerties.
+###
 utils.arrangeNodes = (tier, depth = 4, prepass = false) ->
     xProperty = 'x'; yProperty = 'y'
     widthProperty = 'width'; rotationProperty = 'rotation'
@@ -37,9 +46,9 @@ utils.arrangeNodes = (tier, depth = 4, prepass = false) ->
         widthProperty = 'newWidth'; rotationProperty = 'newRotation'
     yOffset = 1
     for node in tier
-        node[xProperty] = (4 - depth) * 150
+        node[xProperty] =  30 + (4 - depth) * 200
         node[yProperty] = yOffset++ * 600 / tier.length - 600 / tier.length / 2
-        if depth < 0 # bizarre... need to think on this
+        if depth is 0
             node[xProperty] = 900
             node[yProperty] = node[yProperty]
     if depth > 0
