@@ -2,6 +2,9 @@ GraphUtils = require '../util/graph_utils'
 NodeInput = require '../util/node_input'
 Popup = require './popup'
 
+fieldData = require '../data/field'
+playerData = require '../data/player'
+
 class Node extends Phaser.Sprite
     
     # Fields
@@ -25,14 +28,14 @@ class Node extends Phaser.Sprite
                 @ability =
                     action: ->
                         print 'did 10 damage'
-                        window.enemyHp -= 10
+                        fieldData.enemyHp -= 10
                     name: 'Attack'
                     text: 'Perform a basic attack for 10 damage.'
                 @tint = 0xFF0000
             when 1
                 @ability =
                     action: ->
-                        window.blockedLast = true
+                        playerData.blocking = true
                         print '50% block'
                     name: 'Block'
                     text: "Cause the enemy's next attack to do half damage."
@@ -40,9 +43,9 @@ class Node extends Phaser.Sprite
             when 2
                 @ability =
                     action: ->
-                        window.playerHp += 10
-                        if window.playerHp > 100
-                            window.playerHp = 100
+                        playerData.hp += 10
+                        if playerData.hp > 100
+                            playerData.hp = 100
                         print 'healed 10 hp'
                     name: 'Heal'
                     text: "Heal yourself for 10 HP."

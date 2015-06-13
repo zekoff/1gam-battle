@@ -2,11 +2,15 @@ Node = require '../objects/node'
 GraphUtils = require '../util/graph_utils'
 
 fieldData = require '../data/field'
+playerData = require '../data/player'
 
 state = {}
 
 state.create = ->
-    window.root = new Node
+    fieldData.init()
+    playerData.init()
+    
+    root = new Node; fieldData.root = root
     game.world.add root
     root.edge.destroy()
     root.createChildren 4
@@ -14,17 +18,17 @@ state.create = ->
     for n in root.getChildren 4
         game.world.add n
     enemyTimer = game.time.create()
-    window.playerHp = 100
+    playerData.hp = 100
     timerFunction = ->
         hpLost = 10
-        hpLost /= 2 if window.blockedLast
-        window.blockedLast = false
-        window.playerHp -= hpLost
-        print "Player HP: #{window.playerHp}"
+        hpLost /= 2 if playerData.blocking
+        playerData.blocking = false
+        playerData.hp -= hpLost
+        print "Player HP: #{playerData.hp}"
         enemyTimer.add 2000, timerFunction
     enemyTimer.add 2000, timerFunction
     enemyTimer.start()
-    window.enemyHp = 100
+    fieldData.enemyHp = 100
 
 state.update = ->
     #if window.enemyHp <= 0

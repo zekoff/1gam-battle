@@ -1,5 +1,7 @@
 GraphUtils = require './graph_utils'
 
+fieldData = require '../data/field'
+
 node_input = {}
 
 # Must be bound to a node before using.
@@ -21,7 +23,7 @@ node_input.advanceNodes = ->
         if not child._onscreen and child.key is 'circle'
             child.edge?.kill()
             child.kill()
-    GraphUtils.shiftNodes window.root, @
-    window.root = @
+    GraphUtils.shiftNodes fieldData.root, @
+    fieldData.root = @
 
 module.exports = node_input
