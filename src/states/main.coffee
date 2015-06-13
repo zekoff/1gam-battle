@@ -1,6 +1,8 @@
 Node = require '../objects/node'
 GraphUtils = require '../util/graph_utils'
 
+fieldData = require '../data/field'
+
 state = {}
 
 state.create = ->
