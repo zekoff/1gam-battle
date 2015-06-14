@@ -1,6 +1,9 @@
 GraphUtils = require '../util/graph_utils'
 NodeInput = require '../util/node_input'
 Popup = require './popup'
+Attack = require '../ability/attack'
+Defend = require '../ability/defend'
+Heal = require '../ability/heal'
 
 fieldData = require '../data/field'
 playerData = require '../data/player'
@@ -12,6 +15,7 @@ class Node extends Phaser.Sprite
     edge: null # edge back to parent
     ability: null
     popup: null
+    icon: null
     
     # Public methods
     constructor: (x = 0, y = 0, type = 'circle')->
@@ -19,38 +23,22 @@ class Node extends Phaser.Sprite
         fieldData.nodeGroup.add @
         @anchor.set 0.5
         @inputEnabled = true
-        @edge = game.add.sprite x, y, 'line'
-        fieldData.edgeGroup.add @edge
-        @edge.scale.set 4
-        @edge.tint = 0x00FF00
-        @events.onInputUp.add NodeInput.advanceNodes.bind @
         switch game.rnd.between 0, 2
             when 0
-                @ability =
-                    action: ->
-                        print 'did 10 damage'
-                        fieldData.enemyHp -= 10
-                    name: 'Attack'
-                    text: 'Perform a basic attack for 10 damage.'
-                @tint = 0xFF0000
+                @ability = new Attack
             when 1
-                @ability =
-                    action: ->
-                        playerData.blocking = true
-                        print '50% block'
-                    name: 'Block'
-                    text: "Cause the enemy's next attack to do half damage."
-                @tint = 0x0000FF
+                @ability = new Defend
             when 2
-                @ability =
-                    action: ->
-                        playerData.hp += 10
-                        if playerData.hp > 100
-                            playerData.hp = 100
-                        print 'healed 10 hp'
-                    name: 'Heal'
-                    text: "Heal yourself for 10 HP."
-                @tint = 0x00FF00
+                @ability = new Heal
+        @edge = game.make.sprite x, y, 'line'
+        fieldData.edgeGroup.add @edge
+        @edge.scale.set 2
+        @edge.tint = 0xAAAAAA
+        @icon = game.make.sprite x, y, @ability.icon
+        @icon.anchor.set 0.5
+        fieldData.iconGroup.add @icon
+        @tint = @ability.tint
+        @events.onInputUp.add NodeInput.advanceNodes.bind @
         @events.onInputOver.add =>
             @popup = new Popup
             @popup.x = 4

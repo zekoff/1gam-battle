@@ -11,6 +11,7 @@ state.create = ->
     playerData.init()
     fieldData.edgeGroup = game.add.group()
     fieldData.nodeGroup = game.add.group()
+    fieldData.iconGroup = game.add.group()
     root = new Node; fieldData.root = root
     fieldData.nodeGroup.add root
     root.edge.destroy()

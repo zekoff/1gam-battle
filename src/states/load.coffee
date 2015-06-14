@@ -6,6 +6,10 @@ state.preload = ->
 state.create = ->
     game.load.image 'circle', 'images/circle.png'
     game.load.image 'line', 'images/line.png'
+    game.load.image 'sword', 'images/W_Sword003.png'
+    game.load.image 'buff', 'images/S_Buff08.png'
+    game.load.image 'potion', 'images/P_Red07.png'
+    game.load.image 'shield', 'images/E_Wood03.png'
     game.load.start()
     
 state.update = ->

@@ -4,5 +4,6 @@ fieldData.init = ->
     fieldData.enemyHp = null
     fieldData.nodeGroup = null
     fieldData.edgeGroup = null
+    fieldData.iconGroup = null
 
 module.exports = fieldData

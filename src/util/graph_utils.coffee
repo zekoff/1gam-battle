@@ -18,9 +18,14 @@ utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
     for node in oldNodes
         if node not in newNodes
             node.edge?.kill()
+            node.icon?.kill()
             node.kill()
     newRoot.edge.destroy()
     game.tweens.create(newRoot).to(
+        x: LEFT_EDGE_PADDING
+        y: FIELD_HEIGHT / 2
+    , TWEEN_MS).start()
+    game.tweens.create(newRoot.icon).to(
         x: LEFT_EDGE_PADDING
         y: FIELD_HEIGHT / 2
     , TWEEN_MS).start()
@@ -36,6 +41,10 @@ the prepass parameter to true.
 utils.shiftChildren = (node, depth = TIERS_ONSCREEN + 1) ->
     for child in node.getChildren()
         game.tweens.create(child).to(
+            x: child.newX
+            y: child.newY
+        , TWEEN_MS).start()
+        game.tweens.create(child.icon).to(
             x: child.newX
             y: child.newY
         , TWEEN_MS).start()
@@ -65,11 +74,13 @@ utils.arrangeNodes = (tier, depth = TIERS_ONSCREEN + 1, prepass = false) ->
         widthProperty = 'newWidth'; rotationProperty = 'newRotation'
     yOffset = 1
     for node in tier
-        node[xProperty] =  LEFT_EDGE_PADDING + (TIERS_ONSCREEN + 1 - depth) * TIER_SPACING
+        node[xProperty] = LEFT_EDGE_PADDING + (TIERS_ONSCREEN + 1 - depth) * TIER_SPACING
         node[yProperty] = yOffset++ * FIELD_HEIGHT / tier.length - FIELD_HEIGHT / tier.length / 2
         if depth is 1
             node[xProperty] = TIER_SPACING * (TIERS_ONSCREEN) + LEFT_EDGE_PADDING
             node[yProperty] = node[yProperty]
+        node.icon[xProperty] = node[xProperty]
+        node.icon[yProperty] = node[yProperty]
     if depth > 1
         nextTier = []
         for child in tier
