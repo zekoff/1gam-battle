@@ -11,13 +11,19 @@ utils = {}
 
 utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
     utils.arrangeNodes [newRoot], depth, true
-    # TODO: clean up old nodes
     newNodes = newRoot.getChildren depth
+    newNodes.push newRoot
     oldNodes = oldRoot.getChildren depth
+    oldNodes.push oldRoot
     for node in oldNodes
         if node not in newNodes
             node.edge?.kill()
             node.kill()
+    newRoot.edge.destroy()
+    game.tweens.create(newRoot).to(
+        x: LEFT_EDGE_PADDING
+        y: FIELD_HEIGHT / 2
+    , TWEEN_MS).start()
     utils.shiftChildren newRoot, depth
     
 ###
@@ -45,7 +51,7 @@ utils.shiftChildren = (node, depth = TIERS_ONSCREEN + 1) ->
 ###
 Starting with the given tier, set the X/Y properties of nodes to the specified
 depth so that they are arranged in a tree. If the prepass parameter is true,
-set the newX/newY propoerties instead of directly setting the X/Y properties.
+set the newX/newY properties instead of directly setting the X/Y properties.
 
 The `depth` parameter specifies how many tiers AFTER the parameter `tier` will
 also be arranged. This should include the tier that hangs off the end of the

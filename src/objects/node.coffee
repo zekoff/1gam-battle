@@ -9,7 +9,6 @@ class Node extends Phaser.Sprite
     
     # Fields
     _children: null
-    _onscreen: false
     edge: null # edge back to parent
     ability: null
     popup: null
