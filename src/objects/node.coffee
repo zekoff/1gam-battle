@@ -24,13 +24,14 @@ class Node extends Phaser.Sprite
     constructor: (x = 0, y = 0, type = 'circle')->
         super game, x, y, type
         fieldData.nodeGroup.add @
+        @scale.set 1.5
         @anchor.set 0.5
         @inputEnabled = true
         @ability = new (game.rnd.pick abilityList)
         @edge = game.make.sprite x, y, 'line'
         fieldData.edgeGroup.add @edge
         @edge.scale.set 2
-        @edge.tint = 0xAAAAAA
+        @edge.tint = 0x404040
         @icon = game.make.sprite x, y, @ability.icon
         @icon.anchor.set 0.5
         fieldData.iconGroup.add @icon

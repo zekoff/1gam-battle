@@ -9,6 +9,12 @@ state = {}
 state.create = ->
     fieldData.init()
     playerData.init()
+    fieldData.background = game.add.tileSprite 0, 0, 800, 600, 'pattern'
+    fieldData.mask = game.add.image 0, 0, 'line'
+    fieldData.mask.height = 600
+    fieldData.mask.width = 800
+    fieldData.mask.alpha = 0.2
+    fieldData.mask.tint = 0x0000FF
     fieldData.edgeGroup = game.add.group()
     fieldData.nodeGroup = game.add.group()
     fieldData.iconGroup = game.add.group()
