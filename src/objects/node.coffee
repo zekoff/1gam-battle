@@ -24,7 +24,6 @@ class Node extends Phaser.Sprite
     constructor: (x = 0, y = 0, type = 'circle')->
         super game, x, y, type
         fieldData.nodeGroup.add @
-        @scale.set 1.5
         @anchor.set 0.5
         @inputEnabled = true
         @ability = new (game.rnd.pick abilityList)

@@ -16,8 +16,15 @@ state.create = ->
     fieldData.mask.alpha = 0.2
     fieldData.mask.tint = 0x0000FF
     fieldData.edgeGroup = game.add.group()
+    fieldData.edgeGroup.x = 10; fieldData.edgeGroup.y = 10
     fieldData.nodeGroup = game.add.group()
+    fieldData.nodeGroup.x = 10; fieldData.nodeGroup.y = 10
     fieldData.iconGroup = game.add.group()
+    fieldData.iconGroup.x = 10; fieldData.iconGroup.y = 10
+    fieldData.hudMask = game.add.image 0, 0, 'hud_mask'
+    fieldData.hudMask.inputEnabled = true
+    fieldData.hudMask.input.pixelPerfectClick = true
+    fieldData.hudMask.input.pixelPerfectOver = true
     root = new Node; fieldData.root = root
     fieldData.nodeGroup.add root
     root.edge.destroy()
