@@ -16,9 +16,11 @@ class Node extends Phaser.Sprite
     # Public methods
     constructor: (x = 0, y = 0, type = 'circle')->
         super game, x, y, type
+        fieldData.nodeGroup.add @
         @anchor.set 0.5
         @inputEnabled = true
         @edge = game.add.sprite x, y, 'line'
+        fieldData.edgeGroup.add @edge
         @edge.scale.set 4
         @edge.tint = 0x00FF00
         @events.onInputUp.add NodeInput.advanceNodes.bind @

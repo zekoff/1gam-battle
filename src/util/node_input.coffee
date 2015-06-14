@@ -9,10 +9,6 @@ node_input.advanceNodes = ->
     @popup?.destroy()
     @ability.action()
     @createChildren 4
-    # add all reachable nodes to field
-    for n in @getChildren 4
-        game.world.add n
-        game.world.add n.edge
     GraphUtils.shiftNodes fieldData.root, @
     fieldData.root = @
 
