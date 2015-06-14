@@ -1,4 +1,3 @@
-utils = {}
 dist = Phaser.Math.distance
 angle = Phaser.Math.angleBetween
 TWEEN_MS = 500
@@ -7,6 +6,8 @@ FIELD_WIDTH = 800
 TIERS_ONSCREEN = 4
 TIER_SPACING = FIELD_WIDTH / TIERS_ONSCREEN
 LEFT_EDGE_PADDING = 30
+
+utils = {}
 
 utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
     utils.arrangeNodes [newRoot], depth, true
@@ -22,19 +23,22 @@ utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
 ###
 Starting with the given node, create a tween animation for each node which moves
 it to its new location based on its newX/newY.
+
+Set newX/newY by calling arrangeNodes on the new desired root node and setting
+the prepass parameter to true.
 ###
 utils.shiftChildren = (node, depth = TIERS_ONSCREEN + 1) ->
     for child in node.getChildren()
-        game.tweens.create(child).to({
+        game.tweens.create(child).to(
             x: child.newX
             y: child.newY
-        }, TWEEN_MS).start()
-        game.tweens.create(child.edge).to({
+        , TWEEN_MS).start()
+        game.tweens.create(child.edge).to(
             width: dist node.newX, node.newY, child.newX, child.newY
             rotation: angle node.newX, node.newY, child.newX, child.newY
             x: node.newX
             y: node.newY
-        }, TWEEN_MS).start()
+        , TWEEN_MS).start()
         if depth > 1
             utils.shiftChildren child, depth - 1
 
