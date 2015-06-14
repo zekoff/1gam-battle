@@ -1,12 +1,15 @@
 GraphUtils = require '../util/graph_utils'
 NodeInput = require '../util/node_input'
 Popup = require './popup'
-Attack = require '../ability/attack'
-Defend = require '../ability/defend'
-Heal = require '../ability/heal'
 
 fieldData = require '../data/field'
 playerData = require '../data/player'
+
+abilityList = [
+    require '../ability/attack'
+    require '../ability/defend'
+    require '../ability/heal'
+]
 
 class Node extends Phaser.Sprite
     
@@ -23,13 +26,7 @@ class Node extends Phaser.Sprite
         fieldData.nodeGroup.add @
         @anchor.set 0.5
         @inputEnabled = true
-        switch game.rnd.between 0, 2
-            when 0
-                @ability = new Attack
-            when 1
-                @ability = new Defend
-            when 2
-                @ability = new Heal
+        @ability = new (game.rnd.pick abilityList)
         @edge = game.make.sprite x, y, 'line'
         fieldData.edgeGroup.add @edge
         @edge.scale.set 2

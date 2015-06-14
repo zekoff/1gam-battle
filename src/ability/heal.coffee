@@ -1,11 +1,12 @@
 playerData = require '../data/player'
 
 class Heal
-    power: 10
     name: 'Heal'
-    text: "Heal yourself for 10 HP."
     tint: 0x00FF00
     icon: 'potion'
+    constructor: ->
+        @power = 10
+        @text = "Heal yourself for #{@power} HP."
     action: ->
         print 'healed for 10'
         playerData.hp += 10
