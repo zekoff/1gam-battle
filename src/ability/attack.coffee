@@ -8,7 +8,7 @@ class Attack
         @power = 10
         @text = "Perform a basic attack for #{@power} damage."
     action: ->
-        print '10 damage'
-        fieldData.enemyHp -= 10
+        debugger
+        fieldData.enemy.hp -= @power
 
 module.exports = Attack

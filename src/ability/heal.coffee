@@ -1,4 +1,4 @@
-playerData = require '../data/player'
+fieldData = require '../data/field'
 
 class Heal
     name: 'Heal'
@@ -9,7 +9,7 @@ class Heal
         @text = "Heal yourself for #{@power} HP."
     action: ->
         print 'healed for 10'
-        playerData.hp += 10
-        playerData.hp = 100 if playerData.hp > 100
+        fieldData.player.hp += 10
+        fieldData.player.hp = 100 if fieldData.player.hp > 100
 
 module.exports = Heal

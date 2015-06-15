@@ -38,8 +38,8 @@ class Node extends Phaser.Sprite
         @events.onInputUp.add NodeInput.advanceNodes.bind @
         @events.onInputOver.add =>
             @popup = new Popup
-            @popup.x = 4
-            @popup.y = 496
+            @popup.x = 254
+            @popup.y = 304
             @popup.setHeading @ability.name
             @popup.setText @ability.text
         @events.onInputOut.add =>

@@ -7,6 +7,7 @@
 - [Phaser](https://phaser.io/)
 - [Cloud9](https://c9.io/)
 - [GIMP](http://www.gimp.org/)
+- [bgpatterns.com](bgpatterns.com)
 
 ---
 

@@ -1,4 +1,4 @@
-playerData = require '../data/player'
+fieldData = require '../data/field'
 
 class Defend
     name: 'Defend'
@@ -9,6 +9,6 @@ class Defend
         @text = "Block the next attack to reduce damage by #{@power * 100}%."
     action: ->
         print 'blocked'
-        playerData.blocking = true
+        fieldData.player.blocking = true
 
 module.exports = Defend
