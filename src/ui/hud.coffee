@@ -1,5 +1,3 @@
-fieldData = require '../data/field'
-
 HP_TEXT_STYLE =
     font: 'sans-serif'
     fontSize: 24
@@ -19,7 +17,7 @@ class Hud extends Phaser.Group
         @add @enemyHp
     update: ->
         # update hp text
-        @playerHp.setText "Player HP: #{fieldData.player.hp}"
-        @enemyHp.setText "Enemy HP: #{fieldData.enemy.hp}"
+        @playerHp.setText "Player HP: #{game.player.hp}"
+        @enemyHp.setText "Enemy HP: #{game.enemy.hp}"
 
 module.exports = Hud

@@ -1,5 +1,3 @@
-fieldData = require '../data/field'
-
 dist = Phaser.Math.distance
 angle = Phaser.Math.angleBetween
 TWEEN_MS = 500
@@ -12,9 +10,9 @@ LEFT_EDGE_PADDING = 30
 utils = {}
 
 utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
-    game.tweens.create(fieldData.background.pattern.tilePosition).to(
-        x: fieldData.background.pattern.tilePosition.x + oldRoot.x - newRoot.x
-        y: fieldData.background.pattern.tilePosition.y + oldRoot.y - newRoot.y
+    game.tweens.create(game.field.background.pattern.tilePosition).to(
+        x: game.field.background.pattern.tilePosition.x + oldRoot.x - newRoot.x
+        y: game.field.background.pattern.tilePosition.y + oldRoot.y - newRoot.y
     , TWEEN_MS).start()
     utils.arrangeNodes [newRoot], depth, true
     newNodes = newRoot.getChildren depth

@@ -1,5 +1,3 @@
-fieldData = require '../data/field'
-
 class Enemy extends Phaser.Sprite
     constructor: ->
         super game, 0, 0, 'circle'

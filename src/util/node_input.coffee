@@ -6,9 +6,9 @@ node_input = {}
 node_input.advanceNodes = ->
     @popup?.destroy()
     @ability.action()
-    fieldData.enemy.act()
+    game.enemy.act()
     @createChildren 4
-    GraphUtils.shiftNodes fieldData.root, @
-    fieldData.root = @
+    GraphUtils.shiftNodes game.field.root, @
+    game.field.root = @
 
 module.exports = node_input

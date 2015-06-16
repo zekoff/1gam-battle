@@ -1,5 +1,3 @@
-fieldData = require '../data/field'
-
 class Attack
     name: 'Attack'
     tint: 0xFF0000
@@ -8,7 +6,6 @@ class Attack
         @power = 10
         @text = "Perform a basic attack for #{@power} damage."
     action: ->
-        debugger
-        fieldData.enemy.hp -= @power
+        game.enemy.hp -= @power
 
 module.exports = Attack
