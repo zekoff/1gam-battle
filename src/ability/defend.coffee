@@ -6,7 +6,6 @@ class Defend
         @power = 0.5
         @text = "Block the next attack to reduce damage by #{@power * 100}%."
     action: ->
-        print 'blocked'
         game.player.blocking = true
 
 module.exports = Defend
