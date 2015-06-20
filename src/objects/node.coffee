@@ -2,21 +2,14 @@ GraphUtils = require '../util/graph_utils'
 NodeInput = require '../util/node_input'
 Popup = require './popup'
 
-abilityList = [
-    require '../ability/player/attack'
-    require '../ability/player/defend'
-    require '../ability/player/heal'
-]
-
 class Node extends Phaser.Sprite
-    
     constructor: (x = 0, y = 0, type = 'circle') ->
         @_children = []
         super game, x, y, type
         game.field.nodes.add @
         @anchor.set 0.5
         @inputEnabled = true
-        @ability = new (game.rnd.pick abilityList)
+        @ability = game.player.getRandomAbility()
         @edge = game.make.sprite x, y, 'line'
         game.field.edges.add @edge
         @edge.scale.set 2

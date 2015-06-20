@@ -1,5 +1,4 @@
 module.exports = (number = 1) ->
-    # really need to trigger this after the node shift
     # get 3rd and 4th level nodes
     nodes = []
     temp = game.field.root.getChildren()

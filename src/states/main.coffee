@@ -5,9 +5,9 @@ Enemy = require '../objects/enemy'
 state = {}
 
 state.create = ->
-    game.field = new Field
-    game.field.init()
     game.player = new Player
     game.enemy = new Enemy
+    game.field = new Field
+    game.field.init()
 
 module.exports = state
