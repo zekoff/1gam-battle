@@ -17,9 +17,10 @@ class Node extends Phaser.Sprite
     onActivate: ->
         @popup?.destroy()
         GraphUtils.advanceNodes.call @
-        @ability.action()
+        game.player.act @ability
         game.enemy.act()
         game.player.endTurn()
+        game.enemy.endTurn()
 
     onOver: ->
         @popup = new Popup 254, 304

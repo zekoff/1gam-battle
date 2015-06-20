@@ -1,6 +1,6 @@
-Field = require '../objects/field'
-Player = require '../objects/player'
-Enemy = require '../objects/enemy'
+Field = require '../ui/field'
+Player = require '../entity/player/base'
+Enemy = require '../entity/enemy/base'
 
 state = {}
 

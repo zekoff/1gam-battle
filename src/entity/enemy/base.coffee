@@ -1,6 +1,6 @@
-breakNodes = require '../ability/enemy/break_node'
+breakNodes = require '../../ability/enemy/break_node'
 
-class Enemy extends Phaser.Sprite
+class BaseEnemy extends Phaser.Sprite
     constructor: ->
         super game, 0, 0, 'circle'
         @hp = 100
@@ -21,5 +21,6 @@ class Enemy extends Phaser.Sprite
         game.player.blocking = false
         game.player.hp -= tempAtk
         breakNodes()
+    endTurn: ->
 
-module.exports = Enemy
+module.exports = BaseEnemy

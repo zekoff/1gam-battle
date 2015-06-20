@@ -1,5 +1,5 @@
-Background = require '../ui/background'
-Hud = require '../ui/hud'
+Background = require './background'
+Hud = require './hud'
 Node = require './node'
 GraphUtils = require '../util/graph_utils'
 
