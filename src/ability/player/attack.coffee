@@ -1,4 +1,6 @@
-class Attack
+BaseAbility = require './base'
+
+class Attack extends BaseAbility
     name: 'Attack'
     tint: 0xFF0000
     icon: 'sword'

@@ -9,6 +9,12 @@ LEFT_EDGE_PADDING = 30
 
 utils = {}
 
+# Must be called in the context of a Node
+utils.advanceNodes = ->
+    @createChildren 4
+    utils.shiftNodes game.field.root, @
+    game.field.root = @
+
 utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
     game.tweens.create(game.field.background.pattern.tilePosition).to(
         x: game.field.background.pattern.tilePosition.x + oldRoot.x - newRoot.x

@@ -3,8 +3,9 @@ class Popup extends Phaser.Group
     @_heading = null
     @_text = null
 
-    constructor: ->
+    constructor: (x, y) ->
         super game
+        @x = x; @y = y
         background = @create 0, 0, 'line'
         background.width = 300
         background.height = 100

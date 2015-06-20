@@ -1,4 +1,6 @@
-class Defend
+BaseAbility = require './base'
+
+class Defend extends BaseAbility
     name: 'Defend'
     tint: 0x0000FF
     icon: 'shield'

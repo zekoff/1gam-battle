@@ -1,4 +1,6 @@
-class Heal
+BaseAbility = require './base'
+
+class Heal extends BaseAbility
     name: 'Heal'
     tint: 0x00FF00
     icon: 'potion'
