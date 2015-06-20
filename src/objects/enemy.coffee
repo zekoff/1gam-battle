@@ -1,4 +1,4 @@
-breakNodes = require '../enemy_action/break_node'
+breakNodes = require '../ability/enemy/break_node'
 
 class Enemy extends Phaser.Sprite
     constructor: ->

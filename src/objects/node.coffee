@@ -3,22 +3,15 @@ NodeInput = require '../util/node_input'
 Popup = require './popup'
 
 abilityList = [
-    require '../ability/attack'
-    require '../ability/defend'
-    require '../ability/heal'
+    require '../ability/player/attack'
+    require '../ability/player/defend'
+    require '../ability/player/heal'
 ]
 
 class Node extends Phaser.Sprite
     
-    # Fields
-    _children: null
-    edge: null # edge back to parent
-    ability: null
-    popup: null
-    icon: null
-    
-    # Public methods
-    constructor: (x = 0, y = 0, type = 'circle')->
+    constructor: (x = 0, y = 0, type = 'circle') ->
+        @_children = []
         super game, x, y, type
         game.field.nodes.add @
         @anchor.set 0.5
@@ -42,11 +35,6 @@ class Node extends Phaser.Sprite
         @events.onInputOut.add =>
             @popup.destroy()
 
-    addChild: (child) ->
-        if @_children is null
-            @_children = []
-        @_children.push child
-
     ###
     Randomly create children for this node. The `depth` parameter specifies
     how many tiers of children to create. `1` would be the node's immediate
@@ -54,8 +42,7 @@ class Node extends Phaser.Sprite
     and then their immediate children, etc.
     ###
     createChildren: (depth = 1) ->
-        if @_children is null
-            @_children = []
+        if @_children.length is 0
             @_children.push(new Node @x, @y) for [0..game.rnd.between(0,2)]
         for child in @_children
             child.createChildren(depth - 1) if depth > 1
