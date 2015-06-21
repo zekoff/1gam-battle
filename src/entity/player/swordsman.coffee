@@ -4,6 +4,7 @@ abilityList = [
     require '../../ability/player/defend'
     require '../../ability/player/heal'
     require '../../ability/player/riposte'
+    require '../../ability/player/feint'
 ]
 
 class Swordsman extends BasePlayer

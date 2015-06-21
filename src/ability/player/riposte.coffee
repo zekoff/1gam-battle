@@ -7,8 +7,8 @@ class Riposte extends BaseAbility
     constructor: ->
         super()
         @power = 1.2
-        @text = "Anticipate your enemy's attack. If their next action is an
-        attack, take no damage and return #{@power * 100}% of the attack's damage."
+        @text = "If enemy's next action is an attack, take no damage and return
+        #{@power * 100}% of the attack's damage."
     action: ->
         game.player.riposte = @
 

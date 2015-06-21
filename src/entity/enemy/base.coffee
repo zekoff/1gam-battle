@@ -5,12 +5,15 @@ class BaseEnemy extends Phaser.Sprite
         super game, 0, 0, 'circle'
         @name = "Base Enemy"
         @hp = 100
+        @ai = []
         @atk = 10
-        @turn = 0
+        @ai.push @attack
     act: ->
-        game.player.receiveDamage @atk
+        @ai.slice(-1)[0]()
     receiveDamage: (dmg) ->
         @hp -= dmg
+    attack: ->
+        game.player.receiveDamage @atk
     endTurn: ->
 
 module.exports = BaseEnemy
