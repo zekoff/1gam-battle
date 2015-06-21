@@ -8,6 +8,6 @@ class Defend extends BaseAbility
         @power = 0.5
         @text = "Block the next attack to reduce damage by #{@power * 100}%."
     action: ->
-        game.player.blocking = true
+        game.player.blocking = @
 
 module.exports = Defend

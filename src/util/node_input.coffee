@@ -4,6 +4,8 @@ Popup = require '../ui/popup'
 module.exports =
     nodeActivated: ->
         @popup?.destroy()
+        game.player.changeStance game.field.root.y - @y
+        game.player.applyStanceEffect @ability
         GraphUtils.advanceNodes.call @
         game.player.act @ability
         game.enemy.act()
