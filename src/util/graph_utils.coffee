@@ -9,12 +9,19 @@ LEFT_EDGE_PADDING = 30
 
 utils = {}
 
-# Must be called in the context of a Node
+###
+The entry point from external modules that want to trigger the node-movement
+behavior. Must be called in the context of a Node.
+###
 utils.advanceNodes = ->
-    @createChildren 4
+    @createChildren TIERS_ONSCREEN
     utils.shiftNodes game.field.root, @
     game.field.root = @
 
+###
+Advances onscreen nodes based on selected node (`newRoot`). Calls shiftChildren
+recursively.
+###
 utils.shiftNodes = (oldRoot, newRoot, depth = TIERS_ONSCREEN + 1) ->
     game.tweens.create(game.field.background.pattern.tilePosition).to(
         x: game.field.background.pattern.tilePosition.x + oldRoot.x - newRoot.x
