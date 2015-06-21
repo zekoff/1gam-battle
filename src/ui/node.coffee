@@ -1,5 +1,4 @@
-GraphUtils = require '../util/graph_utils'
-Popup = require './popup'
+NodeInput = require '../util/node_input'
 
 class Node extends Phaser.Sprite
     constructor: (x = 0, y = 0, type = 'circle') ->
@@ -10,25 +9,9 @@ class Node extends Phaser.Sprite
         @inputEnabled = true
         @ability = game.player.getRandomAbility()
         @ability.attachToNode @
-        @events.onInputUp.add @onActivate, @
-        @events.onInputOver.add @onOver, @
-        @events.onInputOut.add @onOut, @
-
-    onActivate: ->
-        @popup?.destroy()
-        GraphUtils.advanceNodes.call @
-        game.player.act @ability
-        game.enemy.act()
-        game.player.endTurn()
-        game.enemy.endTurn()
-
-    onOver: ->
-        @popup = new Popup 254, 304
-        @popup.setHeading @ability.name
-        @popup.setText @ability.text
-
-    onOut: ->
-        @popup.destroy()
+        @events.onInputUp.add NodeInput.nodeActivated.bind @
+        @events.onInputOver.add NodeInput.onOverNode.bind @
+        @events.onInputOut.add NodeInput.onOutNode.bind @
 
     ###
     Randomly create children for this node. The `depth` parameter specifies
