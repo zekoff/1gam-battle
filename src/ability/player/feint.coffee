@@ -7,11 +7,10 @@ class Feint extends BaseAbility
     constructor: ->
         super()
         @power = 1
-        @text = "Do #{@power} damage, provoking the enemy to attack on its next
-        turn."
+        @text = "Do #{@power} damage and provoke the enemy to attack on its
+        next turn."
     action: ->
         game.enemy.receiveDamage @power
-        # Add basic attack AI frame to enemy's AI stack
         game.enemy.ai.push ->
             game.enemy.attack()
             game.enemy.ai.pop()

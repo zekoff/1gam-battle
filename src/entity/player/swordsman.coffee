@@ -25,5 +25,25 @@ class Swordsman extends BasePlayer
     endTurn: ->
         super()
         @riposte = null
+    getStanceName: ->
+        if @stance > 100
+            "Patient"
+        else if @stance < -100
+            "Aggressive"
+        else
+            "Balanced"
+    applyStanceEffect: (ability) ->
+        print @getStanceName()
+        switch @getStanceName()
+            when "Patient"
+                if ability.name is "Riposte"
+                    print 'patient riposte'
+                    ability.power *= 1.5
+            when "Aggressive"
+                unless ability.name is "Riposte"
+                    print 'aggressive non-riposte'
+                    ability.power *= 1.5
+            when "Balanced"
+                ability.power *= 1.1
 
 module.exports = Swordsman
