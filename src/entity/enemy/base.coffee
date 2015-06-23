@@ -1,5 +1,4 @@
-breakNodes = require '../../ability/enemy/break_node'
-attack = require '../../ability/enemy/attack'
+BasicAbilities = require '../../ability/enemy/basic_abilities'
 
 class BaseEnemy extends Phaser.Sprite
     constructor: ->
@@ -8,7 +7,7 @@ class BaseEnemy extends Phaser.Sprite
         @hp = 100
         @actionQueue = []
         @atk = 10
-        @actionQueue.push attack
+        @actionQueue.push BasicAbilities.attack
     act: ->
         @actionQueue.push @getNextAction()
         @actionQueue.shift().call @
