@@ -1,4 +1,5 @@
 BaseAbility = require './base'
+enemyAttack = require '../enemy/attack'
 
 class Feint extends BaseAbility
     name: "Feint"
@@ -11,8 +12,8 @@ class Feint extends BaseAbility
         next turn."
     action: ->
         game.enemy.receiveDamage @power
-        game.enemy.ai.push ->
-            game.enemy.attack()
-            game.enemy.ai.pop()
+        game.enemy.actionQueue.unshift ->
+            enemyAttack()
+            game.enemy.actionQueue.shift()
 
 module.exports = Feint

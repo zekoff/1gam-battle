@@ -1,19 +1,21 @@
 breakNodes = require '../../ability/enemy/break_node'
+attack = require '../../ability/enemy/attack'
 
 class BaseEnemy extends Phaser.Sprite
     constructor: ->
         super game, 0, 0, 'circle'
         @name = "Base Enemy"
         @hp = 100
-        @ai = []
+        @actionQueue = []
         @atk = 10
-        @ai.push @attack
+        @actionQueue.push attack
     act: ->
-        @ai.slice(-1)[0]()
+        @actionQueue.push @getNextAction()
+        @actionQueue.shift().call @
     receiveDamage: (dmg) ->
         @hp -= dmg
-    attack: ->
-        game.player.receiveDamage @atk
+    getNextAction: ->
+        attack
     endTurn: ->
 
 module.exports = BaseEnemy
