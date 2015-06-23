@@ -8,6 +8,6 @@ class Attack extends BaseAbility
         @power = 10
         @text = "Perform a basic attack for #{@power} damage."
     action: ->
-        game.enemy.hp -= @power
+        game.enemy.receiveDamage @power
 
 module.exports = Attack

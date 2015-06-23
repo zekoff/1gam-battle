@@ -15,6 +15,12 @@ class Hud extends Phaser.Group
         @add @playerHp
         @enemyHp = game.make.text 400, 500, "", HP_TEXT_STYLE
         @add @enemyHp
+        enemyActionLine = game.make.image 700, 20, 'line'
+        enemyActionLine.height = 400
+        enemyActionLine.width = 6
+        enemyActionLine.tint = 0xFF0000
+        @add enemyActionLine
+        @enemyActions = game.add.group()
     update: ->
         # update hp text
         @playerHp.setText "Player HP: #{game.player.hp}"

@@ -1,5 +1,7 @@
 BaseEnemy = require './base'
 BasicAbilities = require '../../ability/enemy/basic_abilities'
+Attack = require '../../ability/enemy/attack'
+GroundPound = require '../../ability/enemy/ground_pound'
 
 class Titan extends BaseEnemy
     constructor: ->
@@ -8,20 +10,12 @@ class Titan extends BaseEnemy
         @hp = 150
         @atk = 10
         @turn = 0
-        @actionQueue.push @getNextAction()
+        @actionQueue.push new Attack
+        @actionQueue.push new Attack
     getNextAction: ->
-        if game.rnd.between(0, 4) is 1
-            return BasicAbilities.breakNodes.bind @, 3
-        @turn++
-        boost = false
-        if @turn is 5
-            print 'boosted attack coming up! next action'
-        if @turn > 5
-            boost = true
-            print 'boosted attack! action'
-            @atk *= 3
-            turn = 0
-        return BasicAbilities.attack.bind @
+        if game.rnd.frac() < .2
+            return new GroundPound()
+        return new Attack()
     endTurn: ->
         super()
         @atk = 10

@@ -1,4 +1,4 @@
-BasicAbilities = require '../../ability/enemy/basic_abilities'
+Attack = require '../../ability/enemy/basic_abilities'
 
 class BaseEnemy extends Phaser.Sprite
     constructor: ->
@@ -7,14 +7,15 @@ class BaseEnemy extends Phaser.Sprite
         @hp = 100
         @actionQueue = []
         @atk = 10
-        @actionQueue.push BasicAbilities.attack
     act: ->
+        nextAction = @getNextAction()
+        game.field.hud.enemyActions.add nextAction
         @actionQueue.push @getNextAction()
-        @actionQueue.shift().call @
+        @actionQueue.shift().action.call @
     receiveDamage: (dmg) ->
         @hp -= dmg
     getNextAction: ->
-        attack
+        new Attack
     endTurn: ->
 
 module.exports = BaseEnemy
