@@ -10,8 +10,10 @@ class Titan extends BaseEnemy
         @hp = 150
         @atk = 10
         @turn = 0
-        @actionQueue.push new Attack
-        @actionQueue.push new Attack
+    init: ->
+        for i in [0..3]
+            @queueAction @getNextAction()
+        @placeActionsOnLine()
     getNextAction: ->
         if game.rnd.frac() < .2
             return new GroundPound()

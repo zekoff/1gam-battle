@@ -11,5 +11,6 @@ state.create = ->
     game.enemy = new Titan
     game.field = new Field
     game.field.init()
+    game.enemy.init()
 
 module.exports = state
