@@ -7,8 +7,11 @@ module.exports =
         game.player.changeStance game.field.root.y - @y
         game.player.applyStanceEffect @ability
         GraphUtils.advanceNodes.call @
+        # insert delay
         game.player.act @ability
+        # insert delay; play animations; etc.
         game.enemy.act()
+        # insert delay; play animations; etc.
         game.player.endTurn()
         game.enemy.endTurn()
     onOverNode: ->

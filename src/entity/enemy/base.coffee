@@ -12,7 +12,8 @@ class BaseEnemy extends Phaser.Sprite
         if @actionQueue.length < 4
             @queueAction @getNextAction()
         @dequeAction().action.call @
-        @placeActionsOnLine()
+        #@placeActionsOnLine()
+        @shiftActionsDownLine()
     receiveDamage: (dmg) ->
         @hp -= dmg
     getNextAction: ->
@@ -33,9 +34,24 @@ class BaseEnemy extends Phaser.Sprite
         for action in @actionQueue
             if i < 3
                 action.visible = true
-                action.y = 400 - (i * 150)
+                action.y = 370 - (i * 150)
             else
                 action.visible = false
+            i++
+    shiftActionsDownLine: ->
+        i = 0
+        for action in @actionQueue
+            if i < 2
+                action.visible = true
+                game.tweens.create(action).to(
+                    y: action.y + 150
+                , 500).start()
+            else if i is 2
+                action.visible = true
+                action.y = -10
+                game.tweens.create(action).to(
+                    y: 370 - (i * 150)
+                , 500).start()
             i++
     dequeAction: ->
         action = @actionQueue.shift()
