@@ -34,7 +34,7 @@ class BaseEnemy extends Phaser.Sprite
         for action in @actionQueue
             if i < 3
                 action.visible = true
-                action.y = 370 - (i * 150)
+                action.y = 310 - (i * 110)
             else
                 action.visible = false
             i++
@@ -44,13 +44,13 @@ class BaseEnemy extends Phaser.Sprite
             if i < 2
                 action.visible = true
                 game.tweens.create(action).to(
-                    y: action.y + 150
+                    y: action.y + 110
                 , 500).start()
             else if i is 2
                 action.visible = true
                 action.y = -10
                 game.tweens.create(action).to(
-                    y: 370 - (i * 150)
+                    y: 310 - (i * 110)
                 , 500).start()
             i++
     dequeAction: ->

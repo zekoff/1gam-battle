@@ -5,5 +5,7 @@ module.exports =
         print 'breakNodes'
         nodes = game.field.root.getChildren 3
         for i in [0..number - 1]
-            # actual 'break' logic
-            game.rnd.pick(nodes).tint = 0x000000
+            node = game.rnd.pick(nodes)
+            node.tint = 0x000000
+            node.broken = true
+            node.icon.alpha = 0.5

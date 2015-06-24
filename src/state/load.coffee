@@ -7,7 +7,7 @@ state.create = ->
     game.load.image 'circle', 'images/circle.png'
     game.load.image 'line', 'images/line.png'
     game.load.image 'pattern', 'images/pattern.png'
-    game.load.image 'hud_mask', 'images/hud_mask.png'
+    game.load.image 'hud_mask', 'images/hud_mask_2.png'
     game.load.image 'sword', 'images/W_Sword003.png'
     game.load.image 'buff', 'images/S_Buff08.png'
     game.load.image 'potion', 'images/P_Red07.png'
