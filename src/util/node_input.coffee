@@ -3,6 +3,8 @@ Popup = require '../ui/popup'
 
 module.exports =
     nodeActivated: ->
+        for node in game.field.root.getChildren()
+            node.disableInput()
         @popup?.destroy()
         game.player.changeStance game.field.root.y - @y
         stanceLocation = (game.player.stance + 300) / 600 # normalized
@@ -23,6 +25,8 @@ module.exports =
             print 'ready for next turn'
             game.player.endTurn()
             game.enemy.endTurn()
+            for node in game.field.root.getChildren()
+                node.enableInput()
         delay.start()
     onOverNode: ->
         @popup = new Popup 254, 304

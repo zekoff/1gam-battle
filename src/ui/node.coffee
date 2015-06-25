@@ -9,7 +9,6 @@ class Node extends Phaser.Sprite
         @inputEnabled = true
         @ability = game.player.getRandomAbility()
         @ability.attachToNode @
-        @events.onInputUp.add NodeInput.nodeActivated.bind @
         @events.onInputOver.add NodeInput.onOverNode.bind @
         @events.onInputOut.add NodeInput.onOutNode.bind @
 
@@ -35,5 +34,27 @@ class Node extends Phaser.Sprite
         if depth > 1
             child.getChildren(depth - 1, children) for child in @_children
         return children
+        
+    disableInput: ->
+        game.tweens.create(@scale).to(
+            x: 1
+            y: 1
+        , 500).start()
+        game.tweens.create(@icon.scale).to(
+            x: 1
+            y: 1
+        , 500).start()
+        @events.onInputUp.removeAll()
+        
+    enableInput: ->
+        game.tweens.create(@scale).to(
+            x: 2
+            y: 2
+        , 200).start()
+        game.tweens.create(@icon.scale).to(
+            x: 2
+            y: 2
+        , 200).start()
+        @events.onInputUp.add NodeInput.nodeActivated.bind @
 
 module.exports = Node

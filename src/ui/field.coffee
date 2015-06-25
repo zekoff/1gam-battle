@@ -16,5 +16,7 @@ class Field
         @root.edge.destroy()
         @root.createChildren 4
         GraphUtils.arrangeNodes [@root]
+        for node in @root.getChildren()
+            node.enableInput()
 
 module.exports = Field
