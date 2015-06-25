@@ -19,11 +19,6 @@ class Hud extends Phaser.Group
         @add @playerHp
         @enemyHp = game.make.text 400, 500, "", HP_TEXT_STYLE
         @add @enemyHp
-        #enemyActionLine = game.make.image 700, 20, 'line'
-        #enemyActionLine.height = 400
-        #enemyActionLine.width = 6
-        #enemyActionLine.tint = 0xFF0000
-        #@add enemyActionLine
         @enemyActions = game.add.group()
         @stanceIndicator = game.add.image 583, (@STANCE_LOW - @STANCE_HIGH) / 2 + @STANCE_HIGH, 'circle'
         @stanceIndicator.inputEnabled = true
@@ -34,7 +29,6 @@ class Hud extends Phaser.Group
         @stanceIndicator.events.onInputOut.add ->
             @popup.destroy()
     update: ->
-        # update hp text
         @playerHp.setText "Player HP: #{game.player.hp}"
         @enemyHp.setText "Enemy HP: #{game.enemy.hp}"
 

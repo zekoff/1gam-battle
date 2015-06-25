@@ -13,14 +13,17 @@ module.exports =
         game.field.hud.stanceIndicator.tint = game.player.getStanceInfo().color
         game.player.applyStanceEffect @ability
         GraphUtils.advanceNodes.call @
-        # insert delay
-        if !@broken
-            game.player.act @ability
-        # insert delay; play animations; etc.
-        game.enemy.act()
-        # insert delay; play animations; etc.
-        game.player.endTurn()
-        game.enemy.endTurn()
+        delay = game.time.create()
+        delay.add 500, =>
+            if !@broken
+                game.player.act @ability
+        delay.add 1000, =>
+            game.enemy.act()
+        delay.add 1500, =>
+            print 'ready for next turn'
+            game.player.endTurn()
+            game.enemy.endTurn()
+        delay.start()
     onOverNode: ->
         @popup = new Popup 254, 304
         @popup.setHeading @ability.name
