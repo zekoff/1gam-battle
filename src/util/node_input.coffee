@@ -19,10 +19,13 @@ module.exports =
         delay.add 500, =>
             if !@broken
                 game.player.act @ability
+            if game.enemy.hp <= 0
+                print "YOU WIN"
         delay.add 1000, =>
             game.enemy.act()
+            if game.player.hp <= 0
+                print "YOU LOSE"
         delay.add 1500, =>
-            print 'ready for next turn'
             game.player.endTurn()
             game.enemy.endTurn()
             for node in game.field.root.getChildren()

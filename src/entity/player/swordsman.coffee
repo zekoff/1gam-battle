@@ -16,7 +16,6 @@ class Swordsman extends BasePlayer
             dmg *= (1 - @blocking.power) if @blocking
             @hp -= dmg
         else if @riposte
-            print "Riposte!"
             game.enemy.receiveDamage dmg *= @riposte.power
         else
             @hp -= dmg
