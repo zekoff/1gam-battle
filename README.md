@@ -21,3 +21,7 @@ npm install -g coffee-script browserfiy watchify
 terminal instance and leave it running.
 
 `alias commit='git add --all; git commit; git push` is handy.
+
+---
+
+[Live version.](http://zekoff.com/1gam-battle/)
