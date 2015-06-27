@@ -11,7 +11,7 @@ Kobold = require '../entity/enemy/kobold'
 state = {}
 
 state.create = ->
-    game.player = new Ninja
+    game.player = new Swordsman
     game.enemy = new Kobold
     game.field = new Field
     game.field.init()
