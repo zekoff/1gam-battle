@@ -19,6 +19,8 @@ state.create = ->
     game.load.image 'mana_tap', 'images/S_Magic02.png'
     game.load.image 'disappear', 'images/S_Shadow05.png'
     game.load.image 'swap_stance', 'images/S_Shadow02.png'
+    game.load.image 'kunai', 'images/W_Throw002.png'
+    game.load.image 'poison', 'images/S_Poison02.png'
     game.load.start()
     
 state.update = ->

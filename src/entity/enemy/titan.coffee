@@ -9,7 +9,7 @@ class Titan extends BaseEnemy
     constructor: ->
         super()
         @name = "Titan"
-        @hp = 300
+        @hp = 400
         @atk = 10
         @turn = 0
         @charging = false

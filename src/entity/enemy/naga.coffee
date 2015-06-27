@@ -8,7 +8,7 @@ class Naga extends BaseEnemy
     constructor: ->
         super()
         @name = "Naga"
-        @hp = 200
+        @hp = 250
         @atk = 7
     getNextAction: ->
         chance = game.rnd.frac()

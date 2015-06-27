@@ -10,7 +10,7 @@ Naga = require '../entity/enemy/naga'
 state = {}
 
 state.create = ->
-    game.player = new Wizard
+    game.player = new Ninja
     game.enemy = new Naga
     game.field = new Field
     game.field.init()

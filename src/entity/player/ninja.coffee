@@ -1,11 +1,9 @@
 BasePlayer = require './base'
 abilityList = [
-    require '../../ability/player/attack'
+    require '../../ability/player/kunai'
     require '../../ability/player/disappear'
-    require '../../ability/player/heal'
+    require '../../ability/player/apply_poison'
     require '../../ability/player/swap_stance'
-    #require '../../ability/player/riposte'
-    #require '../../ability/player/feint'
 ]
 
 class Ninja extends BasePlayer
