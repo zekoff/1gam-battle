@@ -3,7 +3,7 @@ BaseAbility = require './base'
 class Fireball extends BaseAbility
     name: "Fireball"
     tint: 0xff8000
-    icon: null
+    icon: 'fireball'
     constructor: ->
         @power = 10        
         @text = "Launch a fireball for #{@power} damage."

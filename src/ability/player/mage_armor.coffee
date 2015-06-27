@@ -3,7 +3,7 @@ BaseAbility = require './base'
 class MageArmor extends BaseAbility
     name: "Mage Armor"
     tint: 0xaaaacc
-    icon: null
+    icon: 'mage_armor'
     constructor: ->
         @power = .3
         @text = "Add #{@power*100}% to magic armor.

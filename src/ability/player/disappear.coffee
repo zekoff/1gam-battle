@@ -3,7 +3,7 @@ BaseAbility = require './base'
 class Disappear extends BaseAbility
     name: "Disappear"
     tint: 0xFF00FF
-    icon: null
+    icon: 'disappear'
     constructor: ->
         super()
         @power = 0

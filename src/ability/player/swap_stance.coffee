@@ -3,7 +3,7 @@ BaseAbility = require './base'
 class StanceSwap extends BaseAbility
     name: "Flow"
     tint: 0x808080
-    icon: null
+    icon: 'swap_stance'
     constructor: ->
         super()
         @power = 0

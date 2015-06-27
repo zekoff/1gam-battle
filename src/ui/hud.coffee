@@ -29,7 +29,7 @@ class Hud extends Phaser.Group
         @stanceIndicator.events.onInputOut.add ->
             @popup.destroy()
     update: ->
-        @playerHp.setText "Player HP: #{game.player.hp}"
-        @enemyHp.setText "Enemy HP: #{game.enemy.hp}"
+        @playerHp.setText "#{game.player.name} HP: #{game.player.hp}"
+        @enemyHp.setText "#{game.enemy.name} HP: #{game.enemy.hp}"
 
 module.exports = Hud

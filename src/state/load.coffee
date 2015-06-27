@@ -12,6 +12,13 @@ state.create = ->
     game.load.image 'buff', 'images/S_Buff08.png'
     game.load.image 'potion', 'images/P_Red07.png'
     game.load.image 'shield', 'images/E_Wood03.png'
+    game.load.image 'fireball', 'images/S_Fire03.png'
+    game.load.image 'ice_lance', 'images/S_Ice03.png'
+    game.load.image 'mage_armor', 'images/S_Buff03.png'
+    game.load.image 'magic_missile', 'images/S_Light01.png'
+    game.load.image 'mana_tap', 'images/S_Magic02.png'
+    game.load.image 'disappear', 'images/S_Shadow05.png'
+    game.load.image 'swap_stance', 'images/S_Shadow02.png'
     game.load.start()
     
 state.update = ->

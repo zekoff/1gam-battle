@@ -3,7 +3,7 @@ BaseAbility = require './base'
 class ManaTap extends BaseAbility
     name: "Mana Tap"
     tint: 0xaaaacc
-    icon: null
+    icon: 'mana_tap'
     constructor: ->
         @power = 10
         @text = "The next three spellcasts will heal you for #{@power}."

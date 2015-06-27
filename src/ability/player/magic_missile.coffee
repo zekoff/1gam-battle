@@ -3,7 +3,7 @@ BaseAbility = require './base'
 class MagicMissile extends BaseAbility
     name: "Magic Missiles"
     tint: 0xaaaacc
-    icon: null
+    icon: 'magic_missile'
     constructor: ->
         @power = 5
         @text = "Launch three magic missiles for #{@power} damage each."
