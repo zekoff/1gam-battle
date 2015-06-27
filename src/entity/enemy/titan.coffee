@@ -9,14 +9,10 @@ class Titan extends BaseEnemy
     constructor: ->
         super()
         @name = "Titan"
-        @hp = 250
+        @hp = 300
         @atk = 10
         @turn = 0
         @charging = false
-    init: ->
-        for i in [0..3]
-            @queueAction @getNextAction()
-        @placeActionsOnLine()
     getNextAction: ->
         if @charging
             @charging = false

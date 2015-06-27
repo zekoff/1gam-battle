@@ -12,6 +12,9 @@ class BaseEnemy extends Phaser.Sprite
         @actionQueue = []
         @atk = 10
     init: ->
+        for i in [0..3]
+            @queueAction @getNextAction()
+        @placeActionsOnLine()
     act: ->
         shouldShift = false
         if @actionQueue.length < 4
