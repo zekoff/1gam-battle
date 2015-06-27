@@ -1,18 +1,21 @@
 GraphUtils = require './graph_utils'
 Popup = require '../ui/popup'
 
+adjustStance = ->
+    game.player.changeStance game.field.root.y - @y
+    stanceLocation = (game.player.stance + 300) / 600 # normalized
+    stanceLocation = (1 - stanceLocation)
+    stanceLocation *= game.field.hud.STANCE_LOW - game.field.hud.STANCE_HIGH
+    stanceLocation += game.field.hud.STANCE_HIGH
+    game.field.hud.stanceIndicator.y = stanceLocation
+    game.field.hud.stanceIndicator.tint = game.player.getStanceInfo().color
+
 module.exports =
     nodeActivated: ->
         for node in game.field.root.getChildren()
             node.disableInput()
         @popup?.destroy()
-        game.player.changeStance game.field.root.y - @y
-        stanceLocation = (game.player.stance + 300) / 600 # normalized
-        stanceLocation = (1 - stanceLocation)
-        stanceLocation *= game.field.hud.STANCE_LOW - game.field.hud.STANCE_HIGH
-        stanceLocation += game.field.hud.STANCE_HIGH
-        game.field.hud.stanceIndicator.y = stanceLocation
-        game.field.hud.stanceIndicator.tint = game.player.getStanceInfo().color
+        adjustStance.call @
         game.player.applyStanceEffect @ability
         GraphUtils.advanceNodes.call @
         delay = game.time.create()
@@ -28,6 +31,7 @@ module.exports =
         delay.add 1500, =>
             game.player.endTurn()
             game.enemy.endTurn()
+            adjustStance.call @
             for node in game.field.root.getChildren()
                 node.enableInput()
         delay.start()
