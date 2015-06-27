@@ -1,6 +1,8 @@
 state = {}
 
 state.preload = ->
+    game.scale.pageAlignHorizontally = true
+    game.scale.pageAlignVertically = true
     game.stage.disableVisibilityChange = true
     game.load.baseURL = './assets/'
     
