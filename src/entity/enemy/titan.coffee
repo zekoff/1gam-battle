@@ -25,7 +25,5 @@ class Titan extends BaseEnemy
             return new Charge()
         else
             return new Attack()
-    endTurn: ->
-        super()
 
 module.exports = Titan
