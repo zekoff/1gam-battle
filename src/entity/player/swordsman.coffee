@@ -10,7 +10,7 @@ abilityList = [
 class Swordsman extends BasePlayer
     constructor: ->
         super()
-        @name = "Swordsman"
+        @name = "Noble"
     receiveDamage: (dmg) ->
         if @blocking
             dmg *= (1 - @blocking.power) if @blocking

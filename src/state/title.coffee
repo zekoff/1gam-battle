@@ -1,6 +1,6 @@
 state = {}
 
 state.create = ->
-    game.state.start 'main'
+    game.state.start 'select'
 
 module.exports = state
