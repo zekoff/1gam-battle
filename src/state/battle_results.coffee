@@ -13,7 +13,6 @@ module.exports =
         timer.add 2000, ->
             text = game.add.text(400, 500, "Fight again?", TEXT_STYLE)
             text.anchor.set 0.5
-            text.inputEnabled = true
-            text.events.onInputUp.add ->
+            game.input.onUp.addOnce ->
                 game.state.start 'select'
         timer.start()

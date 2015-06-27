@@ -25,6 +25,7 @@ state.create = ->
     game.load.image 'wizard_portrait', 'images/wizard.png'
     game.load.image 'noble_portrait', 'images/noble.png'
     game.load.image 'ninja_portrait', 'images/ninja.png'
+    game.load.image 'title_image', 'images/title.png'
     game.load.start()
     
 state.update = ->
