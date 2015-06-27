@@ -61,6 +61,7 @@ state.create = ->
     titan = game.add.text 550, 360, "Titan", TEXT_STYLE_SMALLER
     titan.enemyText = "Mighty stone being from the mountains that can rend the earth beneath you."
     for enemyText in [kobold, naga, titan]
+        enemyText.tint = 0x808080
         enemyText.inputEnabled = true
         enemyText.events.onInputOver.add ->
             @tint = 0xFF8080
@@ -69,7 +70,7 @@ state.create = ->
             enemyPopup.setText @enemyText
         , enemyText
         enemyText.events.onInputOut.add ->
-            @tint = 0xffffff
+            @tint = 0x808080
             enemyPopup.destroy()
         , enemyText
         enemyText.events.onInputUp.add ->

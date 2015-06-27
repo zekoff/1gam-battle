@@ -25,10 +25,14 @@ module.exports =
                 game.player.act @ability
             if game.enemy.hp <= 0
                 print "YOU WIN"
+                game.battleResult = 'victory'
+                game.state.start 'results'
         delay.add 1000, =>
             game.enemy.act()
             if game.player.hp <= 0
                 print "YOU LOSE"
+                game.battleResult = 'defeat'
+                game.state.start 'results'
         delay.add 1500, =>
             game.player.endTurn()
             game.enemy.endTurn()
