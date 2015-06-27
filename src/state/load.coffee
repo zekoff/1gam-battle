@@ -1,6 +1,7 @@
 state = {}
 
 state.preload = ->
+    game.stage.disableVisibilityChange = true
     game.load.baseURL = './assets/'
     
 state.create = ->

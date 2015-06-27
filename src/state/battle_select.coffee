@@ -14,6 +14,7 @@ selectedEnemyText = null
 selectedHero = null
 selectedEnemy = null
 popup = null
+enemyPopup = null
 
 state.create = ->
     selectedHeroText = null
@@ -21,6 +22,7 @@ state.create = ->
     selectedHero = null
     selectedEnemy = null
     popup = null
+    enemyPopup = null
     heroSelectHeading = game.add.text 400, 30, "Select your Hero:", TEXT_STYLE
     heroSelectHeading.anchor.set 0.5
     noble = game.add.image 150, PORTRAIT_Y, 'noble_portrait'
@@ -48,27 +50,34 @@ state.create = ->
         , portrait
         portrait.events.onInputUp.add ->
             popup?.destroy()
-            # set selected hero
             selectedHero = @
         , portrait
     enemySelectHeading = game.add.text 400, 330, "Select an Opponent:", TEXT_STYLE
     enemySelectHeading.anchor.set 0.5
     kobold = game.add.text 150, 360, "Kobold", TEXT_STYLE_SMALLER
+    kobold.enemyText = "A strong, stupid opponent from the Eastern caves."
     naga = game.add.text 380, 360, "Naga", TEXT_STYLE_SMALLER
+    naga.enemyText = "A horrific snake creature that poisons, constricts, and drains health."
     titan = game.add.text 550, 360, "Titan", TEXT_STYLE_SMALLER
+    titan.enemyText = "Mighty stone being from the mountains that can rend the earth beneath you."
     for enemyText in [kobold, naga, titan]
         enemyText.inputEnabled = true
         enemyText.events.onInputOver.add ->
             @tint = 0xFF8080
+            enemyPopup = new Popup @x - 100, @y + 20
+            enemyPopup.setHeading @text
+            enemyPopup.setText @enemyText
         , enemyText
         enemyText.events.onInputOut.add ->
             @tint = 0xffffff
+            enemyPopup.destroy()
         , enemyText
         enemyText.events.onInputUp.add ->
+            enemyPopup?.destroy()
             selectedEnemy = @text
         , enemyText
-    selectedHeroText = game.add.text 100, 440, "Selected Hero: none", TEXT_STYLE
-    selectedEnemyText = game.add.text 100, 490, "Selected Opponent: none", TEXT_STYLE
+    selectedHeroText = game.add.text 100, 510, "Selected Hero: none", TEXT_STYLE
+    selectedEnemyText = game.add.text 100, 550, "Selected Opponent: none", TEXT_STYLE
 
 state.update = ->
     if selectedHero
