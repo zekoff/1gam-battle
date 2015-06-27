@@ -18,6 +18,7 @@ module.exports =
         adjustStance.call @
         game.player.applyStanceEffect @ability
         GraphUtils.advanceNodes.call @
+        @edgeEffect?.activate()
         delay = game.time.create()
         delay.add 500, =>
             if !@broken

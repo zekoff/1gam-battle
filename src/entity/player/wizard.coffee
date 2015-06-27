@@ -4,7 +4,7 @@ abilityList = [
     require '../../ability/player/fireball'
     require '../../ability/player/ice_lance'
     require '../../ability/player/magic_missile'
-    # mana tap (do something to edges)
+    require '../../ability/player/mana_tap'
 ]
 
 class Wizard extends BasePlayer
